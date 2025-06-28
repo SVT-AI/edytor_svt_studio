@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SVT Studio Edytor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="language-switch">
+    <button onclick="setLanguage('pl')">PL</button>
+    <button onclick="setLanguage('en')">EN</button>
+  </div>
+
+  <h1 id="title">Edytor zdjęć SVT Studio 📸</h1>
+  
+  <input type="file" accept="image/*" id="upload" />
+  <div class="toolbar">
+    <button onclick="cropCustom()">✂️ Kadruj</button>
+    <button onclick="enableDraw()">🖌️ Rysuj</button>
+    <button onclick="applyPortraitEffect()">📷 Portret</button>
+    <button onclick="applySharpen()">🔍 Wyostrz</button>
+    <button onclick="saveImage()">💾 Zapisz JPG</button>
+    <button onclick="saveAsPDF()">📄 PDF</button>
+  </div>
+  <canvas id="canvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
