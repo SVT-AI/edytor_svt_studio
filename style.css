@@ -1,0 +1,155 @@
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Tematy (light/dark) */
+:root {
+  --panel: rgba(0,0,0,0.6);
+  --text: #fff;
+}
+.light {
+  --panel: #ffffff;
+  --text: #222;
+}
+
+/* Tła */
+body {
+  font-family: "Segoe UI", sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  transition: background 0.3s, color 0.3s;
+  background: #111;
+}
+body.bg-studio { background: url('bg1.jpg') center/cover no-repeat fixed; }
+body.bg-camera { background: url('bg2.jpg') center/cover no-repeat fixed; }
+body.bg-robot  { background: url('bg3.jpg') center/cover no-repeat fixed; }
+
+/* Przyciemnienie tła */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
+}
+
+/* Wrapper aplikacji */
+.app {
+  background: var(--panel);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 1100px;
+  width: 100%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Nagłówek */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+.logo {
+  height: 96px;
+  width: 96px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+.controls { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.bg-switch button,
+.language-switch button,
+.controls > button {
+  background: #fff;
+  color: #333;
+  border: none;
+  border-radius: 10px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.bg-switch button:hover,
+.language-switch button:hover,
+.controls > button:hover { background: #ddd; transform: translateY(-1px); }
+
+/* Tytuł */
+h1 { text-align: center; margin-bottom: 15px; font-size: 1.7rem; }
+
+/* Toolbar */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.toolbar button {
+  background: #ff9800;
+  border: none;
+  color: white;
+  border-radius: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+.toolbar button:hover { background: #e68900; transform: scale(1.05); }
+.toolbar input[type=color],
+.toolbar input[type=range] { cursor: pointer; }
+
+/* Obszar edycji */
+.editor-area {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+.canvas-wrapper,
+.preview-wrapper {
+  background: #222;
+  border-radius: 12px;
+  padding: 10px;
+}
+.preview-wrapper { min-width: 220px; max-width: 360px; }
+.preview-wrapper p { margin-bottom: 8px; color: #ddd; font-size: 0.95rem; }
+
+canvas {
+  max-width: 100%;
+  border-radius: 8px;
+  border: 2px solid #444;
+}
+
+/* Stopka */
+footer { margin-top: 20px; text-align: center; font-size: 0.9rem; opacity: 0.85; }
+
+/* SVT Badge (nakładka na tle robota) */
+#svtBadge {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(28px, 8vw, 96px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #fff;
+  text-shadow: 0 2px 0 #c00, 0 0 20px rgba(255,255,255,0.35);
+  padding: 8px 18px;
+  border: 6px solid #c00;
+  border-radius: 14px;
+  background: rgba(0,0,0,0.25);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  display: none; /* domyślnie ukryte */
+  pointer-events: none;
+}
+body.bg-robot #svtBadge { display: block; }
+
+/* Responsywność */
+@media (max-width: 768px) {
+  .editor-area { flex-direction: column; align-items: stretch; }
+  .preview-wrapper { width: 100%; }
+}
